@@ -14,7 +14,7 @@ public class BankAccount {
     String phoneNumber;
     Status status;
 
-    enum Status {
+    public enum Status {
         ENABLE, DISABLE
     }
 }

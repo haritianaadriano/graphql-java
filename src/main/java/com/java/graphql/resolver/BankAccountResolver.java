@@ -10,7 +10,11 @@ import java.util.UUID;
 public class BankAccountResolver implements GraphQLQueryResolver {
     public BankAccount bankAccount(UUID id){
         return BankAccount.builder()
+                .id(id)
+                .lastName("adriano")
                 .firstName("haritiana")
+                .status(BankAccount.Status.ENABLE)
+                .phoneNumber("phone-number")
                 .build();
     }
 }
