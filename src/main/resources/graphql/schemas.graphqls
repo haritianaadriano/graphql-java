@@ -1,3 +1,4 @@
 type Query{
     bankAccount(id: ID): Bankaccount
+    ping: Ping
 }
