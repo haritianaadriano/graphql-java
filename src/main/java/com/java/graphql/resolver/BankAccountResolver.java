@@ -9,6 +9,8 @@ import java.util.UUID;
 @Component
 public class BankAccountResolver implements GraphQLQueryResolver {
     public BankAccount bankAccount(UUID id){
-
+        return BankAccount.builder()
+                .firstName("haritiana")
+                .build();
     }
 }
