@@ -1,0 +1,7 @@
+type BankAccount {
+    id: ID,
+    firstName: String,
+    lastName: String,
+    phoneNumber: String
+    status: Status
+}
