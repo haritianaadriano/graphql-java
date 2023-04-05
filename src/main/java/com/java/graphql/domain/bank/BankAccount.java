@@ -1,4 +1,4 @@
-package com.java.graphql.domain;
+package com.java.graphql.domain.bank;
 
 import lombok.Builder;
 import lombok.Value;
@@ -13,8 +13,4 @@ public class BankAccount {
     String lastName;
     String phoneNumber;
     Status status;
-
-    public enum Status {
-        ENABLE, DISABLE
-    }
 }

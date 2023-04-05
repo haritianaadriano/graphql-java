@@ -1,7 +1,7 @@
-type BankAccount {
+type Bankaccount {
     id: ID!
     firstName: String!
     lastName: String!
     phoneNumber: String!
-    status: Status
+    status: Status!
 }
