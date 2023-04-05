@@ -1,3 +1,3 @@
 type Query{
-    bankAccount(id: ID): BankAccount!
+    bankAccount(id: ID): BankAccount
 }
