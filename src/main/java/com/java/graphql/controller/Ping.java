@@ -1,6 +1,5 @@
 package com.java.graphql.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
