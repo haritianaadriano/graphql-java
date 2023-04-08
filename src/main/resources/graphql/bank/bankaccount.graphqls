@@ -1,7 +1,5 @@
 type Bankaccount {
     id: ID!
-    firstName: String!
-    lastName: String!
-    phoneNumber: String!
+    ref: String!
     status: Status!
 }
