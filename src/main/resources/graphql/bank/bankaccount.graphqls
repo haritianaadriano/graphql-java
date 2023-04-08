@@ -2,4 +2,5 @@ type Bankaccount {
     id: ID!
     ref: String!
     status: Status!
+    client: Client!
 }
