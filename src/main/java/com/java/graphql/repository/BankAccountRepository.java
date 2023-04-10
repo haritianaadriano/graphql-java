@@ -1,6 +1,6 @@
 package com.java.graphql.repository;
 
-import com.java.graphql.domain.bank.BankAccount;
+import com.java.graphql.domain.model.BankAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
