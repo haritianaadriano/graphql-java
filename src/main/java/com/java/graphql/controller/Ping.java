@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class Ping {
     @QueryMapping
-    public com.java.graphql.domain.bank.ping.Ping ping(){
-        return com.java.graphql.domain.bank.ping.Ping.pong;
+    public com.java.graphql.domain.model.ping.Ping ping(){
+        return com.java.graphql.domain.model.ping.Ping.pong;
     }
 }
