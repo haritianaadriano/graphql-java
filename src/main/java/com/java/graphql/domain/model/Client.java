@@ -3,6 +3,7 @@ package com.java.graphql.domain.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.UUID;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
+@Table(name = "\"client\"")
 @Getter
 @Setter
 @AllArgsConstructor
