@@ -1,6 +1,7 @@
 package com.java.graphql.domain.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
@@ -13,6 +14,7 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -29,5 +31,6 @@ public class BankAccount{
     private String ref;
     @OneToOne
     private Client client;
+    @Enumerated(STRING)
     private Status status;
 }
