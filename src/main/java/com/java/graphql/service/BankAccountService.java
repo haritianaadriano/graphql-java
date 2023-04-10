@@ -13,6 +13,6 @@ public class BankAccountService {
     private BankAccountRepository repository;
 
     public List<BankAccount> getBankAccounts(){
-
+        return repository.findAll();
     }
 }
