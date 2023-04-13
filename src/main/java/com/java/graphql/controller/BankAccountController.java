@@ -14,7 +14,7 @@ public class BankAccountController {
     private BankAccountService service;
 
     @QueryMapping
-    public List<BankAccount> getBankAccounts(){
+    public List<BankAccount> bankAccount(){
         return service.getBankAccounts();
     }
 }
