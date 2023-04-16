@@ -1,0 +1,1 @@
+alter sequence client_id_seq restart with 2;
