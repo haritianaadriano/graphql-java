@@ -8,7 +8,7 @@ $$
 $$;
 
 create table if not exists "bank_account" (
-    id varchar primary key,
+    id varchar primary key serial,
     ref varchar not null,
     client_id varchar references client(id),
     status status
