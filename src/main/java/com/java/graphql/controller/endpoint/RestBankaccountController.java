@@ -1,7 +1,7 @@
 package com.java.graphql.controller.endpoint;
 
 import com.java.graphql.domain.model.BankAccount;
-import com.java.graphql.service.rest.BankAccountService;
+import com.java.graphql.service.BankAccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,11 +10,11 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-public class BankAccountController {
+public class RestBankaccountController {
     private BankAccountService service;
 
-    @GetMapping("/bankaccount")
+    @GetMapping("/bankaccounts")
     public List<BankAccount> findBankAccount(){
-        return service.findBankAccounts();
+        return service.getBankAccounts();
     }
 }
