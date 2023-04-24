@@ -22,7 +22,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class Client {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private UUID id;
+    private String id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
