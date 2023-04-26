@@ -10,6 +10,6 @@ $$;
 create table if not exists "bank_account" (
     id serial primary key,
     ref varchar not null,
-    client_id varchar references client(id),
+    client_id int references client(id),
     status status
 );
