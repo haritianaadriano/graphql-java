@@ -27,7 +27,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class BankAccount{
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private String id;
+    private int id;
     private String ref;
     @OneToOne
     private Client client;
