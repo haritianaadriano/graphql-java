@@ -9,7 +9,6 @@ import lombok.Setter;
 
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class BankAccount {

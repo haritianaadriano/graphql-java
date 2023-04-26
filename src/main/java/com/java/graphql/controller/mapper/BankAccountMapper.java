@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class BankAccountMapper {
     private ClientRepository clientRepository;
-    public BankAccount toData(com.java.graphql.controller.model.BankAccount rest){
+    public BankAccount toData(com.java.graphql.controller.model.BankAccount parameter){
         return BankAccount.builder()
-                .ref(rest.getRef())
-                .status(rest.getStatus())
-                .client(clientRepository.findById(rest.getClient()).get())
+                .ref(parameter.getRef())
+                .status(parameter.getStatus())
+                .client(clientRepository.findById(parameter.getClient()).get())
                 .build();
     }
 }
