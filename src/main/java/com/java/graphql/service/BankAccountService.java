@@ -15,4 +15,7 @@ public class BankAccountService {
     public List<BankAccount> getBankAccounts(){
         return repository.findAll();
     }
+    public List<BankAccount> createBankAccounts(){
+
+    }
 }
