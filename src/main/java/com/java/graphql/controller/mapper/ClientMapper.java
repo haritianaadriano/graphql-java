@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ClientMapper {
-    public Client toData(com.java.graphql.controller.model.Client parameter){
+    public Client toData(com.java.graphql.controller.model.Client model){
         return Client.builder()
-                .email(parameter.getEmail())
-                .firstName(parameter.getFirstName())
-                .lastName(parameter.getLastName())
-                .phoneNumber(parameter.getPhoneNumber())
+                .email(model.getEmail())
+                .firstName(model.getFirstName())
+                .lastName(model.getLastName())
+                .phoneNumber(model.getPhoneNumber())
                 .build();
     }
 }

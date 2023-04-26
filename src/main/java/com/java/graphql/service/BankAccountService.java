@@ -19,7 +19,7 @@ public class BankAccountService {
         return repository.findAll();
     }
     public BankAccount createBankAccounts(String ref, Status status, int client){
-        com.java.graphql.controller.model.BankAccount parameter = new com.java.graphql.controller.model.BankAccount(ref, status, client);
-        return repository.save(mapper.toData(parameter));
+        com.java.graphql.controller.model.BankAccount model = new com.java.graphql.controller.model.BankAccount(ref, status, client);
+        return repository.save(mapper.toData(model));
     }
 }
