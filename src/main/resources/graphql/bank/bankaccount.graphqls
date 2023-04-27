@@ -4,3 +4,9 @@ type Bankaccount {
     status: Status!
     client: Client!
 }
+
+type CreateBankaccount {
+    ref: String
+    status: Status
+    client: Int
+}

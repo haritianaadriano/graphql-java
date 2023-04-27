@@ -5,3 +5,10 @@ type Client{
     phoneNumber: String!
     email: String!
 }
+
+type CreateClient {
+    firstName: String
+    lastName: String
+    phoneNumber: String
+    email: String
+}
