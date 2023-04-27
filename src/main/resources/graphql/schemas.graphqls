@@ -3,6 +3,6 @@ type Query{
     bankAccount: [Bankaccount]!
 }
 type Mutation{
-    createBankAccount(createBankaccount: [CreateBankaccount!]!): [Bankaccount]
-    createClient(createClient: [CreateClient!]!): [Client]
+    createBankAccount(createBankaccount: [CreateBankaccount!]!): [Bankaccount!]!
+    createClient(createClient: [CreateClient!]!): [Client!]!
 }
