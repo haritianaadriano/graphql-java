@@ -13,17 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 public class BankAccountService {
     private BankAccountRepository repository;
-    private BankAccountMapper mapper;
 
     public List<BankAccount> getBankAccounts(){
         return repository.findAll();
     }
-    public BankAccount createBankAccounts(String ref, Status status, int client){
-        com.java.graphql.controller.model.BankAccount model = com.java.graphql.controller.model.BankAccount.builder()
-                .client(client)
-                .status(status)
-                .ref(ref)
-                .build();
-        return repository.save(mapper.toData(model));
+    public List<BankAccount> createBankAccounts(List<BankAccount> data){
+        return repository.saveAll(data);
     }
 }
