@@ -5,7 +5,7 @@ type Bankaccount {
     client: Client!
 }
 
-type CreateBankaccount {
+input CreateBankaccount {
     ref: String
     status: Status
     client: Int

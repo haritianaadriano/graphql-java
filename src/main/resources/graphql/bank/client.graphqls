@@ -6,7 +6,7 @@ type Client{
     email: String!
 }
 
-type CreateClient {
+input CreateClient {
     firstName: String
     lastName: String
     phoneNumber: String
