@@ -20,7 +20,7 @@ public class BankAccountController {
     private BankAccountMapper mapper;
 
     @QueryMapping
-    public List<BankAccount> bankAccount(){
+    public List<BankAccount> getBankaccounts(){
         return service.getBankAccounts();
     }
 

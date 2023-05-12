@@ -1,6 +1,6 @@
 type Query{
     ping: Ping
-    bankAccount: [Bankaccount]!
+    getBankaccounts: [Bankaccount]!
 }
 type Mutation{
     createBankAccount(createBankaccount: [CreateBankaccount!]!): [Bankaccount!]!
