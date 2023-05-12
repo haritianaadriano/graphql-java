@@ -4,7 +4,6 @@ import com.java.graphql.controller.mapper.ClientMapper;
 import com.java.graphql.domain.model.Client;
 import com.java.graphql.service.ClientService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
