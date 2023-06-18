@@ -19,8 +19,11 @@ public class BankAccountController {
     private BankAccountMapper mapper;
 
     @QueryMapping
-    public List<BankAccount> getBankaccounts(){
-        return service.getBankAccounts();
+    public List<BankAccount> getBankaccounts(
+            @Argument(name = "page")int page,
+            @Argument(name = "page_size")int pageSize
+    ){
+        return service.getBankAccounts(page, pageSize);
     }
 
     @MutationMapping
