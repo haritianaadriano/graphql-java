@@ -41,6 +41,10 @@
 			<artifactId>graphql-spring-boot-starter</artifactId>
 			<version>14.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 
 		<!-- testing facilities -->
 		<dependency>
