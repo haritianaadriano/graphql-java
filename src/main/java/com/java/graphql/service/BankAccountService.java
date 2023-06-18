@@ -21,6 +21,9 @@ public class BankAccountService {
         Pageable pageable = PageRequest.of(page-1, pageSize);
         return repository.findAll(pageable).stream().toList();
     }
+    public List<BankAccount> getBankAccounts(){
+        return repository.findAll();
+    }
     public List<BankAccount> createBankAccounts(List<BankAccount> data){
         return repository.saveAll(data);
     }
