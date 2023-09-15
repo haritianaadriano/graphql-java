@@ -9,6 +9,7 @@ $$;
 
 create table if not exists "bank_account" (
     id serial primary key,
+    open_session timestamp,
     ref varchar not null,
     client_id int references client(id),
     status status
