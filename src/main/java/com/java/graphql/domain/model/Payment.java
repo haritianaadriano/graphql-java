@@ -32,9 +32,4 @@ public class Payment {
 
   @ManyToOne
   private BankAccount bankAccount;
-
-  public enum PaymentStatus {
-    PAYED, UNPAID, LATE
-  }
-
 }
