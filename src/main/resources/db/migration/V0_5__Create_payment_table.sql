@@ -3,5 +3,5 @@ create table if not exists "payment" (
   created_at timestamp,
   is_late boolean,
   clien_id int references "client"(id),
-  bank_account int references "bank_account"(id)
+  bank_account_id int references "bank_account"(id)
 );
