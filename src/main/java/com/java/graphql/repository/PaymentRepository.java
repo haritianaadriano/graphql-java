@@ -2,7 +2,6 @@ package com.java.graphql.repository;
 
 import com.java.graphql.domain.model.Payment;
 import java.time.Instant;
-import java.util.Set;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,7 +17,7 @@ public interface PaymentRepository extends JpaRepository<Payment, Integer> {
       "WHERE b.id IN :bank_ids " +
       "AND b.openSession BETWEEN :from AND :to"
   )
-  Set<Payment> findByBankAccountCriteria(
+  List<Payment> findByBankAccountCriteria(
       @Param("from")Instant from,
       @Param("to")Instant to,
       @Param("bank_ids")List<Integer>bankAccountsIds,
@@ -29,13 +28,13 @@ public interface PaymentRepository extends JpaRepository<Payment, Integer> {
       "SELECT p FROM Payment p " +
       "WHERE p.createdAt IS NULL"
   )
-  Set<Payment> findPaymentUnpaid(Pageable pageable);
+  List<Payment> findPaymentUnpaid(Pageable pageable);
 
   @Query(
       "SELECT p FROM Payment p " +
       "WHERE p.isLate = :lateStatus"
   )
-  Set<Payment> findPaymentByLateOrPaid(
+  List<Payment> findPaymentByLateOrPaid(
       @Param("lateStatus")boolean lateStatus,
       Pageable pageable
       );

@@ -40,7 +40,7 @@ public class PaymentService {
 
   public Set<Payment> getPaymentByStatus(List<PaymentStatus>paymentStatuses, Pageable pageable) {
     Set<Payment> restults = new HashSet<>();
-    Map<PaymentStatus, Set<Payment>> eachPaymentStatusValues = new HashMap<>();
+    Map<PaymentStatus, List<Payment>> eachPaymentStatusValues = new HashMap<>();
     eachPaymentStatusValues.put(PaymentStatus.LATE, repository.findPaymentByLateOrPaid(true, pageable));
     eachPaymentStatusValues.put(PaymentStatus.PAID, repository.findPaymentByLateOrPaid(false, pageable));
     eachPaymentStatusValues.put(PaymentStatus.UNPAID, repository.findPaymentUnpaid(pageable));

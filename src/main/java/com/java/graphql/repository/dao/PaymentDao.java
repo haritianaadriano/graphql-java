@@ -30,13 +30,13 @@ public class PaymentDao {
     Predicate predicate = criteriaBuilder.conjunction();
 
     Predicate hasClientFirstname = criteriaBuilder.or(
-        criteriaBuilder.like(criteriaBuilder.lower(root.get("firstName")), "%" + keyword + "%"),
-        criteriaBuilder.like(root.get("firstName"), "%" + keyword + "%")
+        criteriaBuilder.like(criteriaBuilder.lower(principalRoot.get("firstName")), "%" + keyword + "%"),
+        criteriaBuilder.like(principalRoot.get("firstName"), "%" + keyword + "%")
     );
 
     Predicate hasClientLastname = criteriaBuilder.or(
-        criteriaBuilder.like(criteriaBuilder.lower(root.get("lastName")), "%" + keyword + "%"),
-        criteriaBuilder.like(root.get("lastName"), "%" + keyword + "%")
+        criteriaBuilder.like(criteriaBuilder.lower(principalRoot.get("lastName")), "%" + keyword + "%"),
+        criteriaBuilder.like(principalRoot.get("lastName"), "%" + keyword + "%")
     );
 
     predicate = criteriaBuilder.and(hasClientLastname, hasClientFirstname);
