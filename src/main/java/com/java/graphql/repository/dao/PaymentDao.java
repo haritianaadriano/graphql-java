@@ -62,21 +62,27 @@ public class PaymentDao {
 
     Predicate predicate = criteriaBuilder.conjunction();
 
-    if (banks_ids != null && !banks_ids.isEmpty()) {
-      Expression<String> bankAccountIdExpression = bankAccountJoin.get("id");
-      predicate = criteriaBuilder.and(predicate, bankAccountIdExpression.in(banks_ids));
-    }
-
-    if (from != null && to == null) {
-      predicate = criteriaBuilder.and(predicate, criteriaBuilder.greaterThanOrEqualTo(root.get("createdAt"), from));
-    }
-
-    if (from == null && to != null) {
-      predicate = criteriaBuilder.and(predicate, criteriaBuilder.lessThanOrEqualTo(root.get("createdAt"), to));
-    }
-
-    if (from != null && to != null) {
-      predicate = criteriaBuilder.and(predicate, criteriaBuilder.between(root.get("createdAt"), from, to));
+    switch (getFilterCase(banks_ids, from, to)) {
+      case 1:
+        // Only banks_ids
+        Expression<String> bankAccountIdExpression = bankAccountJoin.get("id");
+        predicate = criteriaBuilder.and(predicate, bankAccountIdExpression.in(banks_ids));
+        break;
+      case 2:
+        // Only from
+        predicate = criteriaBuilder.and(predicate, criteriaBuilder.greaterThanOrEqualTo(root.get("createdAt"), from));
+        break;
+      case 3:
+        // Only to
+        predicate = criteriaBuilder.and(predicate, criteriaBuilder.lessThanOrEqualTo(root.get("createdAt"), to));
+        break;
+      case 4:
+        // Both from and to
+        predicate = criteriaBuilder.and(predicate, criteriaBuilder.between(root.get("createdAt"), from, to));
+        break;
+      default:
+        // No specific case
+        break;
     }
 
     criteriaQuery
@@ -87,5 +93,22 @@ public class PaymentDao {
         .setFirstResult((pageable.getPageNumber()) * pageable.getPageSize())
         .setMaxResults(pageable.getPageSize())
         .getResultList();
+  }
+
+  private int getFilterCase(List<String> banks_ids, Instant from, Instant to) {
+    int filterCase = 0;
+    if (banks_ids != null && !banks_ids.isEmpty()) {
+      filterCase = 1;
+    }
+    if (from != null) {
+      filterCase = 2;
+    }
+    if (to != null) {
+      filterCase = 3;
+    }
+    if (to != null && from != null) {
+      filterCase = 4;
+    }
+    return filterCase;
   }
 }

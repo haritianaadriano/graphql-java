@@ -31,18 +31,21 @@ public class PaymentService {
     Set<Payment> data =
         new HashSet<>(dao.findPaymentByClientKeyword(clientKeyWord, pageable));
 
-    if(bankAccountIds != null && !bankAccountIds.isEmpty()) {
-      result = filterPaymentfromTwoSet(
-          data,
-          new HashSet<>(dao.findPaymentByBankaccountCriteria(bankAccountIds, from, to, pageable)));
-    }
-    if(paymentStatuses != null && !paymentStatuses.isEmpty()) {
-      result = filterPaymentfromTwoSet(
-          data,
-          new HashSet<>(getPaymentByStatus(paymentStatuses, pageable)));
-    }
-    else {
-      result = data;
+    switch (getFilterCase(paymentStatuses, bankAccountIds, from, to)) {
+      case 1:
+        result = filterPaymentfromTwoSet(
+            data,
+            new HashSet<>(dao.findPaymentByBankaccountCriteria(bankAccountIds, from, to, pageable)));
+        break;
+
+      case 2:
+        result = filterPaymentfromTwoSet(
+            data,
+            new HashSet<>(getPaymentByStatus(paymentStatuses, pageable)));
+        break;
+
+      case 3:
+        result = data;
     }
     return result;
   }
@@ -62,5 +65,19 @@ public class PaymentService {
 
   public Set<Payment> filterPaymentfromTwoSet(Set<Payment> givenData, Set<Payment> toCompare) {
     return givenData.stream().filter(toCompare::contains).collect(Collectors.toSet());
+  }
+
+  public int getFilterCase(List<PaymentStatus>paymentStatuses, List<String>bankAccountIds, Instant from, Instant to) {
+    int filterCase = 0;
+    if(bankAccountIds != null && !bankAccountIds.isEmpty()) {
+      filterCase = 1;
+    }
+    if(paymentStatuses != null && !paymentStatuses.isEmpty()) {
+      filterCase = 2;
+    }
+    if((paymentStatuses == null && bankAccountIds == null && from == null && to == null)) {
+      filterCase = 3;
+    }
+    return filterCase;
   }
 }
