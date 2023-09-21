@@ -1,5 +1,7 @@
 package com.java.graphql.domain.model;
 
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.GenerationType.IDENTITY;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -13,11 +15,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
-
-import static jakarta.persistence.EnumType.STRING;
-import static jakarta.persistence.GenerationType.IDENTITY;
-
 @Entity
 @Table(name = "bank_account")
 @Builder
@@ -28,7 +25,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class BankAccount{
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private int id;
+    private String id;
     private String ref;
     @OneToOne
     private Client client;

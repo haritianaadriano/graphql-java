@@ -22,27 +22,20 @@ public class PaymentService {
   private final PaymentDao dao;
 
   public Set<Payment> getPayments(
-      List<PaymentStatus>paymentStatuses, List<Integer>bankAccountIds,
+      List<PaymentStatus>paymentStatuses, List<String>bankAccountIds,
       Instant from, Instant to, String clientKeyWord, int page, int pageSize
       ) {
     Pageable pageable = PageRequest.of((page-1), pageSize);
     Set<Payment> data =
-        new HashSet<>(dao.findPaymentByClientKeyword(clientKeyWord, pageable));
-
-    if(!paymentStatuses.isEmpty()) {
-      data.addAll(getPaymentByStatus(paymentStatuses, pageable));
-    }
-    if(!bankAccountIds.isEmpty()) {
-      data.addAll(repository.findByBankAccountCriteria(from, to, bankAccountIds, pageable));
-    }
+        new HashSet<>(dao.findPaymentByBankaccountCriteria(bankAccountIds, null, null, pageable));
     return data;
   }
 
   public Set<Payment> getPaymentByStatus(List<PaymentStatus>paymentStatuses, Pageable pageable) {
     Set<Payment> restults = new HashSet<>();
     Map<PaymentStatus, List<Payment>> eachPaymentStatusValues = new HashMap<>();
-    eachPaymentStatusValues.put(PaymentStatus.LATE, repository.findPaymentByLateOrPaid(true, pageable));
-    eachPaymentStatusValues.put(PaymentStatus.PAID, repository.findPaymentByLateOrPaid(false, pageable));
+    eachPaymentStatusValues.put(PaymentStatus.LATE, repository.findPaymentLate(pageable));
+    eachPaymentStatusValues.put(PaymentStatus.PAID, repository.findPaymentPaid(pageable));
     eachPaymentStatusValues.put(PaymentStatus.UNPAID, repository.findPaymentUnpaid(pageable));
 
     paymentStatuses.forEach(status -> {

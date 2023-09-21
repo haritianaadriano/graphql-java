@@ -9,9 +9,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.Instant;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "payment")
@@ -19,10 +21,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Payment {
   @Id
   @GeneratedValue(strategy = IDENTITY)
-  private int id;
+  private String id;
 
   private Instant createdAt;
 
@@ -35,4 +39,8 @@ public class Payment {
   @JoinColumn(name = "bank_account_id")
   @ManyToOne
   private BankAccount bankAccount;
+
+  public boolean isLate(Instant toCompare) {
+    return this.createdAt.isAfter(toCompare);
+  }
 }

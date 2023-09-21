@@ -22,7 +22,7 @@ public class PaymentController {
       @RequestParam(name = "page")Integer page, @RequestParam(name = "page_size")Integer pageSize,
       @RequestParam(name = "client_key_word", required = false, defaultValue = "")String clientKeyword,
       @RequestParam(name = "from", required = false)Instant from, @RequestParam(name = "to", required = false)Instant to,
-      @RequestParam(name = "bankaccounts_ids", required = false)List<Integer> bankaccountsIds,
+      @RequestParam(name = "bankaccounts_ids", required = false)List<String> bankaccountsIds,
       @RequestParam(name = "payments_statuses", required = false)List<PaymentStatus> paymentStatuses
       ) {
     List<Payment> toShow =
