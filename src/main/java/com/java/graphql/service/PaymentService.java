@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,9 +27,24 @@ public class PaymentService {
       Instant from, Instant to, String clientKeyWord, int page, int pageSize
       ) {
     Pageable pageable = PageRequest.of((page-1), pageSize);
+    Set<Payment> result = new HashSet<>();
     Set<Payment> data =
-        new HashSet<>(dao.findPaymentByBankaccountCriteria(bankAccountIds, null, null, pageable));
-    return data;
+        new HashSet<>(dao.findPaymentByClientKeyword(clientKeyWord, pageable));
+
+    if(bankAccountIds != null && !bankAccountIds.isEmpty()) {
+      result = filterPaymentfromTwoSet(
+          data,
+          new HashSet<>(dao.findPaymentByBankaccountCriteria(bankAccountIds, from, to, pageable)));
+    }
+    if(paymentStatuses != null && !paymentStatuses.isEmpty()) {
+      result = filterPaymentfromTwoSet(
+          data,
+          new HashSet<>(getPaymentByStatus(paymentStatuses, pageable)));
+    }
+    else {
+      result = data;
+    }
+    return result;
   }
 
   public Set<Payment> getPaymentByStatus(List<PaymentStatus>paymentStatuses, Pageable pageable) {
@@ -42,5 +58,9 @@ public class PaymentService {
       restults.addAll(eachPaymentStatusValues.get(status));
     });
     return restults;
+  }
+
+  public Set<Payment> filterPaymentfromTwoSet(Set<Payment> givenData, Set<Payment> toCompare) {
+    return givenData.stream().filter(toCompare::contains).collect(Collectors.toSet());
   }
 }
